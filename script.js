@@ -337,26 +337,17 @@ const Storage = {
     // Check if user can start a new session
     canStartSession() {
         const settings = this.getSettings();
-
-        // Premium users have unlimited access
-        if (settings.tier === 'premium') {
-            return true;
-        }
-
-        // Check if it's a new day
         const today = new Date().toDateString();
         const lastDate = settings.lastSessionDate ? new Date(settings.lastSessionDate).toDateString() : null;
 
+        // Reset count for new day if needed
         if (today !== lastDate) {
-            // Reset count for new day
             settings.sessionCount = 0;
             settings.lastSessionDate = new Date().toISOString();
             this.saveSettings(settings);
-            return true;
         }
 
-        // Check daily limit (3 for free tier)
-        return settings.sessionCount < 3;
+        return true; // Always allow session
     },
 
     // Increment session count
@@ -365,13 +356,6 @@ const Storage = {
         settings.sessionCount++;
         settings.totalSessions++;
         settings.lastSessionDate = new Date().toISOString();
-        this.saveSettings(settings);
-    },
-
-    // Unlock premium
-    unlockPremium() {
-        const settings = this.getSettings();
-        settings.tier = 'premium';
         this.saveSettings(settings);
     },
 
@@ -1023,49 +1007,11 @@ document.getElementById('boundaryOkBtn').addEventListener('click', () => {
 // History Button
 document.getElementById('historyBtn').addEventListener('click', () => {
     InsightsCalculator.render();
-
-    // Show premium prompt for free users
-    const settings = Storage.getSettings();
-    const premiumPrompt = document.getElementById('premiumPrompt');
-    if (settings.tier === 'free') {
-        premiumPrompt.style.display = 'block';
-    } else {
-        premiumPrompt.style.display = 'none';
-    }
-
     ScreenManager.show('screen-history');
 });
 
 // Back to Home
 document.getElementById('backToHomeBtn').addEventListener('click', () => {
-    ScreenManager.showHome();
-});
-
-// Limit Screen - Upgrade Button
-document.getElementById('upgradeLimitBtn').addEventListener('click', () => {
-    ScreenManager.show('screen-premium');
-});
-
-// Limit Screen - View History
-document.getElementById('viewHistoryBtn').addEventListener('click', () => {
-    InsightsCalculator.render();
-    ScreenManager.show('screen-history');
-});
-
-// Premium Screen - Upgrade Button
-document.getElementById('upgradeBtn').addEventListener('click', () => {
-    ScreenManager.show('screen-premium');
-});
-
-// Premium Screen - Unlock Premium
-document.getElementById('unlockPremiumBtn').addEventListener('click', () => {
-    Storage.unlockPremium();
-    alert('Premium unlocked! You now have unlimited access.');
-    ScreenManager.showHome();
-});
-
-// Premium Screen - Cancel
-document.getElementById('cancelPremiumBtn').addEventListener('click', () => {
     ScreenManager.showHome();
 });
 

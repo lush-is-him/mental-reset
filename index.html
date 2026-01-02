@@ -190,77 +190,35 @@
                         <!-- Dynamically populated -->
                     </div>
 
-                    <div class="premium-prompt" id="premiumPrompt" style="display: none;">
-                        <p>Unlock unlimited sessions and full pattern history</p>
-                        <button class="primary-btn" id="upgradeBtn">Upgrade to Premium</button>
+
+
+                    <!-- Optional Feedback Screen -->
+                    <div class="screen" id="screen-feedback">
+                        <div class="screen-content">
+                            <h2 class="screen-title">Anything confusing or missing?</h2>
+                            <p class="screen-subtitle">One sentence is enough. This is optional.</p>
+                            <textarea id="feedbackInput" class="thought-input" placeholder="Your feedback..." rows="4"
+                                maxlength="300"></textarea>
+                            <div class="feedback-actions">
+                                <button class="primary-btn" id="sendFeedbackBtn">Email feedback to creator</button>
+                                <button class="secondary-btn" id="skipFeedbackBtn">Skip</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <button class="secondary-btn" id="backToHomeBtn">Back to Home</button>
-                </div>
-            </div>
-
-            <!-- Limit Reached Screen -->
-            <div class="screen" id="screen-limit">
-                <div class="screen-content">
-                    <h2 class="screen-title">Daily Limit Reached</h2>
-                    <p class="screen-subtitle">You've completed 3 sessions today. Come back tomorrow, or upgrade to
-                        premium for unlimited access.</p>
-
-                    <div class="limit-actions">
-                        <button class="primary-btn" id="upgradeLimitBtn">Upgrade to Premium</button>
-                        <button class="secondary-btn" id="viewHistoryBtn">View Your Patterns</button>
+                    <!-- Boundary Message -->
+                    <div class="screen" id="screen-boundary">
+                        <div class="screen-content">
+                            <div class="boundary-card">
+                                <h2 class="screen-title">A gentle pause</h2>
+                                <p class="boundary-text">This tool is for reflection and clarity.</p>
+                                <p class="boundary-text">If you're feeling overwhelmed right now, consider pausing and
+                                    reaching
+                                    out to someone you trust.</p>
+                                <button class="primary-btn" id="boundaryOkBtn">Understood</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Premium Unlock Screen -->
-            <div class="screen" id="screen-premium">
-                <div class="screen-content">
-                    <h2 class="screen-title">Upgrade to Premium</h2>
-                    <div class="premium-features">
-                        <ul class="feature-list">
-                            <li>✓ Unlimited daily sessions</li>
-                            <li>✓ Full pattern history</li>
-                            <li>✓ Deeper insights</li>
-                            <li>✓ Support ethical development</li>
-                        </ul>
-                    </div>
-
-                    <a href="https://buy.stripe.com/test_your_link" target="_blank" class="primary-btn payment-link">
-                        Purchase Premium ($5/month)
-                    </a>
-
-                    <button class="secondary-btn" id="unlockPremiumBtn">I've completed payment</button>
-                    <button class="secondary-btn" id="cancelPremiumBtn">Maybe later</button>
-                </div>
-            </div>
-
-            <!-- Optional Feedback Screen -->
-            <div class="screen" id="screen-feedback">
-                <div class="screen-content">
-                    <h2 class="screen-title">Anything confusing or missing?</h2>
-                    <p class="screen-subtitle">One sentence is enough. This is optional.</p>
-                    <textarea id="feedbackInput" class="thought-input" placeholder="Your feedback..." rows="4"
-                        maxlength="300"></textarea>
-                    <div class="feedback-actions">
-                        <button class="primary-btn" id="sendFeedbackBtn">Email feedback to creator</button>
-                        <button class="secondary-btn" id="skipFeedbackBtn">Skip</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Boundary Message -->
-            <div class="screen" id="screen-boundary">
-                <div class="screen-content">
-                    <div class="boundary-card">
-                        <h2 class="screen-title">A gentle pause</h2>
-                        <p class="boundary-text">This tool is for reflection and clarity.</p>
-                        <p class="boundary-text">If you're feeling overwhelmed right now, consider pausing and reaching
-                            out to someone you trust.</p>
-                        <button class="primary-btn" id="boundaryOkBtn">Understood</button>
-                    </div>
-                </div>
-            </div>
 
         </main>
 
