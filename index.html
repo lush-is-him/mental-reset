@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mental Reset - A simple guided reflection tool for mental clarity">
+    <title>Mental Reset</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">Mental Reset</h1>
+            <button class="icon-btn history-btn" id="historyBtn" aria-label="View history">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+
+            <!-- Screen 1: State Selection -->
+            <div class="screen active" id="screen-state">
+                <div class="screen-content">
+                    <h2 class="screen-title">What's pulling at your attention right now?</h2>
+                    <p class="screen-subtitle">Choose what feels closest</p>
+                    <div class="button-group">
+                        <button class="state-btn" data-state="Overthinking">
+                            <span class="btn-label">Overthinking</span>
+                            <span class="btn-description">Mind won't stop looping</span>
+                        </button>
+                        <button class="state-btn" data-state="Anxious">
+                            <span class="btn-label">Anxious</span>
+                            <span class="btn-description">Feeling tense or worried</span>
+                        </button>
+                        <button class="state-btn" data-state="Stuck">
+                            <span class="btn-label">Stuck</span>
+                            <span class="btn-description">Can't decide or move forward</span>
+                        </button>
+                        <button class="state-btn" data-state="Tired">
+                            <span class="btn-label">Tired</span>
+                            <span class="btn-description">Mentally or emotionally drained</span>
+                        </button>
+                        <button class="state-btn" data-state="Overloaded">
+                            <span class="btn-label">Overloaded</span>
+                            <span class="btn-description">Too much at once</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Grounding Exercise Offer -->
+            <div class="screen" id="screen-grounding-offer">
+                <div class="screen-content">
+                    <h2 class="screen-title">Would you like to try a quick grounding exercise first?</h2>
+                    <p class="screen-subtitle">It might help settle your mind before we continue</p>
+                    <div class="button-group">
+                        <button class="primary-btn" id="groundingYesBtn">Yes, show me</button>
+                        <button class="secondary-btn" id="groundingSkipBtn">Skip for now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Grounding Exercise Selection -->
+            <div class="screen" id="screen-grounding-selection">
+                <div class="screen-content">
+                    <h2 class="screen-title">Pick one that feels doable right now</h2>
+                    <p class="screen-subtitle" id="groundingSubtitle">These help quiet the mental noise</p>
+                    <div class="button-group" id="exerciseOptions">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 4: Grounding Exercise Walkthrough -->
+            <div class="screen" id="screen-grounding-walkthrough">
+                <div class="screen-content">
+                    <div class="exercise-walkthrough">
+                        <h2 class="screen-title" id="exerciseTitle">Exercise</h2>
+
+                        <!-- Breathing Animation (shown for breathing exercises) -->
+                        <div class="breathing-animation" id="breathingAnimation" style="display: none;">
+                            <svg class="breathing-circle" viewBox="0 0 200 200">
+                                <!-- Progress ring background -->
+                                <circle class="progress-ring-bg" cx="100" cy="100" r="90" />
+                                <!-- Progress ring -->
+                                <circle class="progress-ring" cx="100" cy="100" r="90" id="progressRing" />
+                                <!-- Breathing circle -->
+                                <circle class="breath-circle" cx="100" cy="100" r="60" id="breathCircle" />
+                                <!-- Center text -->
+                                <text class="breath-text" x="100" y="105" id="breathText">Breathe</text>
+                            </svg>
+                            <p class="breath-instruction" id="breathInstruction">Follow the circle</p>
+                        </div>
+
+                        <div class="exercise-step" id="exerciseStep">
+                            <!-- Dynamically populated -->
+                        </div>
+                        <div class="exercise-progress" id="exerciseProgress">
+                            <!-- Progress indicator -->
+                        </div>
+                        <button class="primary-btn" id="exerciseNextBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 5: Thought Externalization -->
+            <div class="screen" id="screen-thought">
+                <div class="screen-content">
+                    <h2 class="screen-title">What's the main thought or situation on your mind?</h2>
+                    <p class="screen-subtitle">Sometimes naming it helps. This won't be stored.</p>
+                    <textarea id="thoughtInput" class="thought-input" placeholder="Type here..." rows="6"
+                        maxlength="500"></textarea>
+                    <p class="input-note">This text is private and won't be stored</p>
+                    <button class="primary-btn" id="thoughtNextBtn">I've named it</button>
+                </div>
+            </div>
+
+            <!-- Screen 6: Control Question -->
+            <div class="screen" id="screen-control">
+                <div class="screen-content">
+                    <h2 class="screen-title">Is there something you can realistically do about this in the next 24
+                        hours?</h2>
+                    <p class="screen-subtitle">Not fix it completely—just take one small step</p>
+                    <div class="button-group">
+                        <button class="control-btn" data-control="Actionable">Yes, there's something I can do</button>
+                        <button class="control-btn" data-control="Non-actionable">No, this is outside my control right
+                            now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 7: Resolution -->
+            <div class="screen" id="screen-resolution">
+                <div class="screen-content">
+                    <h2 class="screen-title" id="resolutionTitle">Which small step are you willing to take?</h2>
+                    <p class="screen-subtitle" id="resolutionSubtitle">Pick one. Just one.</p>
+                    <div class="button-group" id="resolutionOptions">
+                        <!-- Dynamically populated -->
+                    </div>
+                    <div class="custom-resolution" id="customResolution" style="display: none;">
+                        <textarea id="resolutionInput" class="thought-input" placeholder="Type your own..." rows="3"
+                            maxlength="200"></textarea>
+                        <button class="primary-btn" id="resolutionNextBtn">Continue</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 8: Reset Output -->
+            <div class="screen" id="screen-output">
+                <div class="screen-content">
+                    <div class="output-card">
+                        <h2 class="screen-title">Your Reset</h2>
+                        <p class="output-summary" id="outputSummary"></p>
+                        <p class="output-encouragement" id="outputEncouragement"></p>
+
+                        <div class="verse-container">
+                            <p class="verse-text" id="verseText"></p>
+                            <p class="verse-reference" id="verseReference"></p>
+                        </div>
+
+                        <div class="feedback-section">
+                            <p class="feedback-question">Did this help you feel clearer?</p>
+                            <div class="feedback-buttons">
+                                <button class="feedback-btn" data-helpful="true" aria-label="Yes, helpful">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+                                        </path>
+                                    </svg>
+                                    Yes
+                                </button>
+                                <button class="feedback-btn" data-helpful="false" aria-label="Not really helpful">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17">
+                                        </path>
+                                    </svg>
+                                    Not really
+                                </button>
+                            </div>
+                        </div>
+
+                        <button class="primary-btn" id="completeBtn">Complete Session</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History/Insights Screen -->
+            <div class="screen" id="screen-history">
+                <div class="screen-content">
+                    <h2 class="screen-title">Your Patterns</h2>
+
+                    <div class="insights-container" id="insightsContainer">
+                        <!-- Dynamically populated -->
+                    </div>
+
+                    <div class="premium-prompt" id="premiumPrompt" style="display: none;">
+                        <p>Unlock unlimited sessions and full pattern history</p>
+                        <button class="primary-btn" id="upgradeBtn">Upgrade to Premium</button>
+                    </div>
+
+                    <button class="secondary-btn" id="backToHomeBtn">Back to Home</button>
+                </div>
+            </div>
+
+            <!-- Limit Reached Screen -->
+            <div class="screen" id="screen-limit">
+                <div class="screen-content">
+                    <h2 class="screen-title">Daily Limit Reached</h2>
+                    <p class="screen-subtitle">You've completed 3 sessions today. Come back tomorrow, or upgrade to
+                        premium for unlimited access.</p>
+
+                    <div class="limit-actions">
+                        <button class="primary-btn" id="upgradeLimitBtn">Upgrade to Premium</button>
+                        <button class="secondary-btn" id="viewHistoryBtn">View Your Patterns</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Unlock Screen -->
+            <div class="screen" id="screen-premium">
+                <div class="screen-content">
+                    <h2 class="screen-title">Upgrade to Premium</h2>
+                    <div class="premium-features">
+                        <ul class="feature-list">
+                            <li>✓ Unlimited daily sessions</li>
+                            <li>✓ Full pattern history</li>
+                            <li>✓ Deeper insights</li>
+                            <li>✓ Support ethical development</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://buy.stripe.com/test_your_link" target="_blank" class="primary-btn payment-link">
+                        Purchase Premium ($5/month)
+                    </a>
+
+                    <button class="secondary-btn" id="unlockPremiumBtn">I've completed payment</button>
+                    <button class="secondary-btn" id="cancelPremiumBtn">Maybe later</button>
+                </div>
+            </div>
+
+            <!-- Optional Feedback Screen -->
+            <div class="screen" id="screen-feedback">
+                <div class="screen-content">
+                    <h2 class="screen-title">Anything confusing or missing?</h2>
+                    <p class="screen-subtitle">One sentence is enough. This is optional.</p>
+                    <textarea id="feedbackInput" class="thought-input" placeholder="Your feedback..." rows="4"
+                        maxlength="300"></textarea>
+                    <div class="feedback-actions">
+                        <button class="primary-btn" id="sendFeedbackBtn">Email feedback to creator</button>
+                        <button class="secondary-btn" id="skipFeedbackBtn">Skip</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boundary Message -->
+            <div class="screen" id="screen-boundary">
+                <div class="screen-content">
+                    <div class="boundary-card">
+                        <h2 class="screen-title">A gentle pause</h2>
+                        <p class="boundary-text">This tool is for reflection and clarity.</p>
+                        <p class="boundary-text">If you're feeling overwhelmed right now, consider pausing and reaching
+                            out to someone you trust.</p>
+                        <button class="primary-btn" id="boundaryOkBtn">Understood</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=eng.sibalwalushomo@gmail.com&su=Mental%20Reset%20Feedback"
+                target="_blank" class="footer-link">
+                Share a thought / Suggest an improvement
+            </a>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

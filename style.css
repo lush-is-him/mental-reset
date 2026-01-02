@@ -1,0 +1,757 @@
+/* ===================================
+   Mental Reset - Calm, Minimal Design
+   =================================== */
+
+:root {
+    /* Color Palette - Soft & Calming */
+    --color-bg: #f8f9fb;
+    --color-surface: #ffffff;
+    --color-primary: #5b7c99;
+    --color-primary-hover: #4a6a85;
+    --color-secondary: #7d9bb5;
+    --color-text: #2c3e50;
+    --color-text-light: #6b7c8f;
+    --color-border: #e1e8ed;
+    --color-success: #6b9080;
+    --color-warning: #c9ada7;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+}
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================
+   App Container
+   =================================== */
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+/* ===================================
+   Header
+   =================================== */
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+.app-title {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: var(--color-border);
+    color: var(--color-primary);
+}
+
+/* ===================================
+   Main Content
+   =================================== */
+
+.app-main {
+    flex: 1;
+    position: relative;
+}
+
+/* ===================================
+   Screen System
+   =================================== */
+
+.screen {
+    display: none;
+    opacity: 0;
+    animation: fadeIn var(--transition-base) forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.screen-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.screen-title {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.3;
+}
+
+.screen-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ===================================
+   Buttons
+   =================================== */
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.state-btn,
+.control-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-align: left;
+}
+
+.state-btn:hover,
+.control-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 124, 153, 0.1);
+}
+
+.state-btn:active,
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: white;
+    background: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.primary-btn:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 124, 153, 0.2);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    color: var(--color-text);
+    background: transparent;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    margin-top: var(--spacing-sm);
+}
+
+.secondary-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ===================================
+   State Button Descriptions
+   =================================== */
+
+.state-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+}
+
+.btn-label {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+}
+
+.btn-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    font-weight: 400;
+}
+
+/* ===================================
+   Exercise Components
+   =================================== */
+
+.exercise-walkthrough {
+    text-align: center;
+}
+
+.exercise-step {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.exercise-progress {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-border);
+    transition: all var(--transition-base);
+}
+
+.progress-dot.active {
+    background: var(--color-primary);
+    transform: scale(1.2);
+}
+
+/* ===================================
+   Resolution Options
+   =================================== */
+
+.custom-resolution {
+    margin-top: var(--spacing-md);
+}
+
+.resolution-choice-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-align: left;
+}
+
+.resolution-choice-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(91, 124, 153, 0.1);
+}
+
+.resolution-choice-btn.custom {
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+/* ===================================
+   Output Encouragement
+   =================================== */
+
+.output-encouragement {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+    font-style: italic;
+}
+
+/* ===================================
+   Breathing Animation
+   =================================== */
+
+.breathing-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: var(--spacing-xl) 0;
+}
+
+.breathing-circle {
+    width: 280px;
+    height: 280px;
+    max-width: 90vw;
+    max-height: 90vw;
+}
+
+/* Progress ring background */
+.progress-ring-bg {
+    fill: none;
+    stroke: var(--color-border);
+    stroke-width: 3;
+}
+
+/* Progress ring (animates around the circle) */
+.progress-ring {
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Breathing circle (pulses in and out) */
+.breath-circle {
+    fill: var(--color-primary);
+    opacity: 0.15;
+    transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Breathing circle animations */
+.breath-circle.inhale {
+    r: 75;
+    opacity: 0.25;
+}
+
+.breath-circle.hold {
+    opacity: 0.25;
+}
+
+.breath-circle.exhale {
+    r: 45;
+    opacity: 0.1;
+}
+
+/* Center text */
+.breath-text {
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 500;
+    fill: var(--color-primary);
+    text-anchor: middle;
+    dominant-baseline: middle;
+    transition: all 0.3s ease;
+}
+
+/* Instruction text below circle */
+.breath-instruction {
+    margin-top: var(--spacing-md);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: center;
+    font-family: var(--font-family);
+    letter-spacing: 0.05em;
+}
+
+/* Gentle pulse animation for non-breathing exercises */
+@keyframes gentlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.2;
+    }
+}
+
+.breath-circle.gentle-pulse {
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* ===================================
+   Input Fields
+   =================================== */
+
+.thought-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    resize: vertical;
+    transition: all var(--transition-base);
+    margin-bottom: var(--spacing-md);
+}
+
+.thought-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+}
+
+.input-note {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+}
+
+/* ===================================
+   Output Screen
+   =================================== */
+
+.output-card {
+    text-align: center;
+}
+
+.output-summary {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+    padding: var(--spacing-lg);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+}
+
+.verse-container {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.verse-text {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.verse-reference {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+/* ===================================
+   Feedback Section
+   =================================== */
+
+.feedback-section {
+    margin: var(--spacing-xl) 0;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.feedback-question {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+
+.feedback-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.feedback-btn:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+}
+
+.feedback-btn.selected {
+    border-color: var(--color-success);
+    background: var(--color-success);
+    color: white;
+}
+
+.feedback-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ===================================
+   Insights/History
+   =================================== */
+
+.insights-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.insight-card {
+    padding: var(--spacing-md);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.insight-title {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.insight-value {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.insight-detail {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    margin-top: var(--spacing-xs);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--color-text-light);
+}
+
+/* ===================================
+   Premium
+   =================================== */
+
+.premium-prompt {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.premium-features {
+    margin: var(--spacing-lg) 0;
+}
+
+.feature-list {
+    list-style: none;
+    text-align: left;
+}
+
+.feature-list li {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+}
+
+.payment-link {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* ===================================
+   Limit Screen
+   =================================== */
+
+.limit-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+/* ===================================
+   Boundary Message
+   =================================== */
+
+.boundary-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.boundary-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+/* ===================================
+   Feedback Actions
+   =================================== */
+
+.feedback-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+/* ===================================
+   Footer
+   =================================== */
+
+.app-footer {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-link {
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+    color: var(--color-primary);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+@media (max-width: 640px) {
+    .app-container {
+        padding: var(--spacing-sm);
+    }
+
+    .screen-content {
+        padding: var(--spacing-lg);
+    }
+
+    .screen-title {
+        font-size: var(--font-size-lg);
+    }
+
+    .app-title {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* ===================================
+   Accessibility
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+button:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
