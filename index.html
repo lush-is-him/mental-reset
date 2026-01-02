@@ -7,6 +7,7 @@
     <meta name="description" content="Mental Reset - A simple guided reflection tool for mental clarity">
     <title>Mental Reset</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -43,6 +44,58 @@
                 </div>
             </div>
 
+            <!-- Screen: Grounding Offer -->
+            <div class="screen" id="screen-grounding-offer">
+                <div class="screen-content">
+                    <h2 class="screen-title">Pause a moment?</h2>
+                    <p class="screen-subtitle">Before we continue, would you like to try a quick grounding exercise to
+                        shift your state?</p>
+                    <div class="button-group">
+                        <button class="primary-btn" id="groundingYesBtn">Yes, let's try it</button>
+                        <button class="secondary-btn" id="groundingSkipBtn">No, I just want to process my
+                            thoughts</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen: Grounding Selection -->
+            <div class="screen" id="screen-grounding-selection">
+                <div class="screen-content">
+                    <h2 class="screen-title">Choose an exercise</h2>
+                    <p class="screen-subtitle" id="groundingSubtitle"></p>
+                    <div class="button-group" id="exerciseOptions">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen: Grounding Walkthrough -->
+            <div class="screen" id="screen-grounding-walkthrough">
+                <div class="screen-content">
+                    <h2 class="screen-title" id="exerciseTitle"></h2>
+
+                    <div id="breathingAnimation" class="breathing-container" style="display: none;">
+                        <div class="breath-visual">
+                            <div class="breath-circle" id="breathCircle"></div>
+                            <svg class="progress-ring-svg" width="200" height="200">
+                                <circle class="progress-ring-circle" id="progressRing" stroke="currentColor"
+                                    stroke-width="4" fill="transparent" r="90" cx="100" cy="100" />
+                            </svg>
+                        </div>
+                        <p class="breath-text" id="breathText">Breathe In</p>
+                        <p class="breath-instruction" id="breathInstruction">4</p>
+                    </div>
+
+                    <p class="screen-subtitle exercise-step" id="exerciseStep"></p>
+
+                    <div class="progress-dots" id="exerciseProgress">
+                        <!-- Dynamically populated -->
+                    </div>
+
+                    <button class="primary-btn" id="exerciseNextBtn">Next</button>
+                </div>
+            </div>
+
             <!-- Screen 2: Thought Externalization -->
             <div class="screen" id="screen-thought">
                 <div class="screen-content">
@@ -71,9 +124,17 @@
             <div class="screen" id="screen-resolution">
                 <div class="screen-content">
                     <h2 class="screen-title" id="resolutionTitle">What is one small action you'll take?</h2>
-                    <textarea id="resolutionInput" class="thought-input" placeholder="Type here..." rows="4"
-                        maxlength="200"></textarea>
-                    <button class="primary-btn" id="resolutionNextBtn">Continue</button>
+                    <p class="screen-subtitle" id="resolutionSubtitle">Choose an option below</p>
+
+                    <div class="button-group" id="resolutionOptions">
+                        <!-- Dynamically populated -->
+                    </div>
+
+                    <div id="customResolution" style="display: none; margin-top: 1rem;">
+                        <textarea id="resolutionInput" class="thought-input" placeholder="Type here..." rows="4"
+                            maxlength="200"></textarea>
+                        <button class="primary-btn" id="resolutionNextBtn">Continue</button>
+                    </div>
                 </div>
             </div>
 
@@ -83,6 +144,8 @@
                     <div class="output-card">
                         <h2 class="screen-title">Your Reset</h2>
                         <p class="output-summary" id="outputSummary"></p>
+                        <p class="output-subtext" id="outputEncouragement"
+                            style="font-weight: 500; color: var(--color-primary); margin-bottom: 2rem;"></p>
 
                         <div class="verse-container">
                             <p class="verse-text" id="verseText"></p>

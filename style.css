@@ -547,3 +547,151 @@ a:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
+
+/* ===================================
+   Grounding & Breathing Animation
+   =================================== */
+
+.breathing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: var(--spacing-lg) 0;
+    min-height: 250px;
+}
+
+.breath-visual {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.breath-circle {
+    width: 120px;
+    height: 120px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: all 4s ease-in-out;
+}
+
+.breath-circle.inhale {
+    transform: scale(1.5);
+    opacity: 0.6;
+}
+
+.breath-circle.hold {
+    transform: scale(1.5);
+    opacity: 0.6;
+}
+
+.breath-circle.exhale {
+    transform: scale(1);
+    opacity: 0.8;
+}
+
+.breath-circle.gentle-pulse {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+.progress-ring-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+    pointer-events: none;
+}
+
+.progress-ring-circle {
+    transition: stroke-dashoffset 0.1s linear;
+    stroke: var(--color-secondary);
+    opacity: 0.3;
+}
+
+.breath-text {
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    color: var(--color-text);
+    margin-top: var(--spacing-md);
+}
+
+.breath-instruction {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: var(--spacing-xs);
+}
+
+.exercise-step {
+    text-align: center;
+    font-weight: 400;
+    color: var(--color-text);
+    margin: var(--spacing-md) 0;
+}
+
+.progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-border);
+    transition: background-color var(--transition-base);
+}
+
+.progress-dot.active {
+    background-color: var(--color-primary);
+}
+
+/* Button Description */
+.btn-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.btn-description {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}
+
+.resolution-choice-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-base);
+    margin-bottom: var(--spacing-sm);
+}
+
+.resolution-choice-btn:hover {
+    border-color: var(--color-primary);
+    background: #f0f4f8;
+}
+
+.resolution-choice-btn.custom {
+    color: var(--color-primary);
+    border-style: dashed;
+    text-align: center;
+}
