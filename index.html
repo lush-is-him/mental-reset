@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mental Reset - A simple guided reflection tool for mental clarity">
     <title>Mental Reset</title>
-    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,137 +31,58 @@
             <!-- Screen 1: State Selection -->
             <div class="screen active" id="screen-state">
                 <div class="screen-content">
-                    <h2 class="screen-title">What's pulling at your attention right now?</h2>
-                    <p class="screen-subtitle">Choose what feels closest</p>
+                    <h2 class="screen-title">How are you feeling right now?</h2>
+                    <p class="screen-subtitle">Choose what best describes your current state</p>
                     <div class="button-group">
-                        <button class="state-btn" data-state="Overthinking">
-                            <span class="btn-label">Overthinking</span>
-                            <span class="btn-description">Mind won't stop looping</span>
-                        </button>
-                        <button class="state-btn" data-state="Anxious">
-                            <span class="btn-label">Anxious</span>
-                            <span class="btn-description">Feeling tense or worried</span>
-                        </button>
-                        <button class="state-btn" data-state="Stuck">
-                            <span class="btn-label">Stuck</span>
-                            <span class="btn-description">Can't decide or move forward</span>
-                        </button>
-                        <button class="state-btn" data-state="Tired">
-                            <span class="btn-label">Tired</span>
-                            <span class="btn-description">Mentally or emotionally drained</span>
-                        </button>
-                        <button class="state-btn" data-state="Overloaded">
-                            <span class="btn-label">Overloaded</span>
-                            <span class="btn-description">Too much at once</span>
-                        </button>
+                        <button class="state-btn" data-state="Overthinking">Overthinking</button>
+                        <button class="state-btn" data-state="Anxious">Anxious</button>
+                        <button class="state-btn" data-state="Stuck">Stuck</button>
+                        <button class="state-btn" data-state="Tired">Tired</button>
+                        <button class="state-btn" data-state="Overloaded">Mentally overloaded</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Screen 2: Grounding Exercise Offer -->
-            <div class="screen" id="screen-grounding-offer">
-                <div class="screen-content">
-                    <h2 class="screen-title">Would you like to try a quick grounding exercise first?</h2>
-                    <p class="screen-subtitle">It might help settle your mind before we continue</p>
-                    <div class="button-group">
-                        <button class="primary-btn" id="groundingYesBtn">Yes, show me</button>
-                        <button class="secondary-btn" id="groundingSkipBtn">Skip for now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Screen 3: Grounding Exercise Selection -->
-            <div class="screen" id="screen-grounding-selection">
-                <div class="screen-content">
-                    <h2 class="screen-title">Pick one that feels doable right now</h2>
-                    <p class="screen-subtitle" id="groundingSubtitle">These help quiet the mental noise</p>
-                    <div class="button-group" id="exerciseOptions">
-                        <!-- Dynamically populated -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Screen 4: Grounding Exercise Walkthrough -->
-            <div class="screen" id="screen-grounding-walkthrough">
-                <div class="screen-content">
-                    <div class="exercise-walkthrough">
-                        <h2 class="screen-title" id="exerciseTitle">Exercise</h2>
-
-                        <!-- Breathing Animation (shown for breathing exercises) -->
-                        <div class="breathing-animation" id="breathingAnimation" style="display: none;">
-                            <svg class="breathing-circle" viewBox="0 0 200 200">
-                                <!-- Progress ring background -->
-                                <circle class="progress-ring-bg" cx="100" cy="100" r="90" />
-                                <!-- Progress ring -->
-                                <circle class="progress-ring" cx="100" cy="100" r="90" id="progressRing" />
-                                <!-- Breathing circle -->
-                                <circle class="breath-circle" cx="100" cy="100" r="60" id="breathCircle" />
-                                <!-- Center text -->
-                                <text class="breath-text" x="100" y="105" id="breathText">Breathe</text>
-                            </svg>
-                            <p class="breath-instruction" id="breathInstruction">Follow the circle</p>
-                        </div>
-
-                        <div class="exercise-step" id="exerciseStep">
-                            <!-- Dynamically populated -->
-                        </div>
-                        <div class="exercise-progress" id="exerciseProgress">
-                            <!-- Progress indicator -->
-                        </div>
-                        <button class="primary-btn" id="exerciseNextBtn">Next</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Screen 5: Thought Externalization -->
+            <!-- Screen 2: Thought Externalization -->
             <div class="screen" id="screen-thought">
                 <div class="screen-content">
-                    <h2 class="screen-title">What's the main thought or situation on your mind?</h2>
-                    <p class="screen-subtitle">Sometimes naming it helps. This won't be stored.</p>
+                    <h2 class="screen-title">What's the main thought or situation looping right now?</h2>
+                    <p class="screen-subtitle">This helps externalize what's on your mind</p>
                     <textarea id="thoughtInput" class="thought-input" placeholder="Type here..." rows="6"
                         maxlength="500"></textarea>
                     <p class="input-note">This text is private and won't be stored</p>
-                    <button class="primary-btn" id="thoughtNextBtn">I've named it</button>
+                    <button class="primary-btn" id="thoughtNextBtn">Continue</button>
                 </div>
             </div>
 
-            <!-- Screen 6: Control Question -->
+            <!-- Screen 3: Control Question -->
             <div class="screen" id="screen-control">
                 <div class="screen-content">
                     <h2 class="screen-title">Is there something you can realistically do about this in the next 24
                         hours?</h2>
-                    <p class="screen-subtitle">Not fix it completely—just take one small step</p>
                     <div class="button-group">
-                        <button class="control-btn" data-control="Actionable">Yes, there's something I can do</button>
-                        <button class="control-btn" data-control="Non-actionable">No, this is outside my control right
-                            now</button>
+                        <button class="control-btn" data-control="Actionable">Yes</button>
+                        <button class="control-btn" data-control="Non-actionable">No</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Screen 7: Resolution -->
+            <!-- Screen 4: Resolution -->
             <div class="screen" id="screen-resolution">
                 <div class="screen-content">
-                    <h2 class="screen-title" id="resolutionTitle">Which small step are you willing to take?</h2>
-                    <p class="screen-subtitle" id="resolutionSubtitle">Pick one. Just one.</p>
-                    <div class="button-group" id="resolutionOptions">
-                        <!-- Dynamically populated -->
-                    </div>
-                    <div class="custom-resolution" id="customResolution" style="display: none;">
-                        <textarea id="resolutionInput" class="thought-input" placeholder="Type your own..." rows="3"
-                            maxlength="200"></textarea>
-                        <button class="primary-btn" id="resolutionNextBtn">Continue</button>
-                    </div>
+                    <h2 class="screen-title" id="resolutionTitle">What is one small action you'll take?</h2>
+                    <textarea id="resolutionInput" class="thought-input" placeholder="Type here..." rows="4"
+                        maxlength="200"></textarea>
+                    <button class="primary-btn" id="resolutionNextBtn">Continue</button>
                 </div>
             </div>
 
-            <!-- Screen 8: Reset Output -->
+            <!-- Screen 5: Reset Output -->
             <div class="screen" id="screen-output">
                 <div class="screen-content">
                     <div class="output-card">
                         <h2 class="screen-title">Your Reset</h2>
                         <p class="output-summary" id="outputSummary"></p>
-                        <p class="output-encouragement" id="outputEncouragement"></p>
 
                         <div class="verse-container">
                             <p class="verse-text" id="verseText"></p>
@@ -283,8 +203,7 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=eng.sibalwalushomo@gmail.com&su=Mental%20Reset%20Feedback"
-                target="_blank" class="footer-link">
+            <a href="mailto:your-email@example.com?subject=Mental%20Reset%20Feedback" class="footer-link">
                 Share a thought / Suggest an improvement
             </a>
         </footer>
