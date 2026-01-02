@@ -396,15 +396,19 @@ const ScreenManager = {
     currentScreen: null,
 
     show(screenId) {
-        // Hide all screens
+        // Hide other screens
         document.querySelectorAll('.screen').forEach(screen => {
-            screen.classList.remove('active');
+            if (screen.id !== screenId) {
+                screen.classList.remove('active');
+            }
         });
 
-        // Show target screen
+        // Show target screen (if not already visible)
         const targetScreen = document.getElementById(screenId);
         if (targetScreen) {
-            targetScreen.classList.add('active');
+            if (!targetScreen.classList.contains('active')) {
+                targetScreen.classList.add('active');
+            }
             this.currentScreen = screenId;
             window.scrollTo(0, 0);
         }
